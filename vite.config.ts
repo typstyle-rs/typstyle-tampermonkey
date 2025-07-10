@@ -14,7 +14,8 @@ export default defineConfig({
         author: 'paran3xus',
         namespace: 'npm/vite-plugin-monkey',
         match: ['https://typst.app/*'],
-        license: 'MPL 2.0'
+        license: 'MPL 2.0',
+        description: 'Format code using typstyle in typst.app'
       },
     }),
   ],
