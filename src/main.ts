@@ -110,7 +110,7 @@ class TypstylePlugin {
         };
         try {
             const formatted = this.formatter.format(content);
-            this.editor.setContent(formatted);
+            this.editor.applyDiff(content, formatted);
             showNotification("Formatted!");
         } catch (error) {
             showNotification(`Format failed! ${error}`, 2000);
