@@ -5,7 +5,7 @@ A userscript that adds [typstyle](https://github.com/typstyle-rs/typstyle) forma
 ## Installation
 
 1. Install a userscript manager like [Tampermonkey](https://www.tampermonkey.net/)
-2. Click [WIP](https://github.com/ParaN3xus/typstyle-tampermonkey) to install the script
+2. Go to [Greasy Fork](https://greasyfork.org/en/scripts/542164-typstyle-tampermonkey) to install the script
 3. Visit [typst.app](https://typst.app) and start formatting!
 
 ## Usage
