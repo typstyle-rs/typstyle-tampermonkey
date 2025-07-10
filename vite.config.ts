@@ -14,9 +14,7 @@ export default defineConfig({
         author: 'paran3xus',
         namespace: 'npm/vite-plugin-monkey',
         match: ['https://typst.app/*'],
-        resource: {
-          css: './src/style.css'
-        }
+        license: 'MPL 2.0'
       },
     }),
   ],
