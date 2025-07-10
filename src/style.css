@@ -1,0 +1,324 @@
+/* Light Theme (default) */
+.typstyle-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10000;
+  backdrop-filter: blur(2px);
+}
+
+.typstyle-modal-content {
+  background: white;
+  border-radius: 12px;
+  width: 420px;
+  max-width: 90vw;
+  max-height: 80vh;
+  overflow-y: auto;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  transform: scale(1);
+  transition: transform 0.2s ease;
+}
+
+.typstyle-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 24px;
+  border-bottom: 1px solid #e5e7eb;
+  background: #f9fafb;
+  border-radius: 12px 12px 0 0;
+}
+
+.typstyle-modal-header h3 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 600;
+  color: #1f2937;
+}
+
+.typstyle-close {
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  color: #6b7280;
+  padding: 0;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.typstyle-close:hover {
+  background-color: #f3f4f6;
+  color: #374151;
+  transform: scale(1.1);
+}
+
+.typstyle-modal-body {
+  padding: 24px;
+}
+
+.typstyle-form-group {
+  margin-bottom: 20px;
+}
+
+.typstyle-form-group:last-child {
+  margin-bottom: 0;
+}
+
+.typstyle-form-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 500;
+  color: #374151;
+  font-size: 14px;
+}
+
+.typstyle-form-group input[type="number"],
+.typstyle-form-group input[type="text"] {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  font-size: 14px;
+  box-sizing: border-box;
+  transition: border-color 0.2s ease;
+  background: white;
+  color: #1f2937;
+}
+
+.typstyle-form-group input[type="number"]:focus,
+.typstyle-form-group input[type="text"]:focus {
+  outline: none;
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.typstyle-form-group input[type="checkbox"] {
+  margin-right: 8px;
+  width: 16px;
+  height: 16px;
+  accent-color: #3b82f6;
+}
+
+.typstyle-form-group label:has(input[type="checkbox"]) {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  margin-bottom: 0;
+}
+
+.typstyle-modal-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  padding: 20px 24px;
+  border-top: 1px solid #e5e7eb;
+  background: #f9fafb;
+  border-radius: 0 0 12px 12px;
+}
+
+.typstyle-btn {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  min-width: 80px;
+}
+
+.typstyle-btn-primary {
+  background-color: #3b82f6;
+  color: white;
+}
+
+.typstyle-btn-primary:hover {
+  background-color: #2563eb;
+}
+
+.typstyle-btn-secondary {
+  background-color: #6b7280;
+  color: white;
+}
+
+.typstyle-btn-secondary:hover {
+  background-color: #4b5563;
+}
+
+.typstyle-modal.show .typstyle-modal-content {
+  animation: modalShow 0.2s ease;
+}
+
+.typstyle-shortcut-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.typstyle-shortcut-container input {
+  padding-right: 35px !important;
+  cursor: pointer;
+  font-family: "Monaco", "Menlo", "Ubuntu Mono", monospace;
+  font-size: 13px;
+  letter-spacing: 0.5px;
+}
+
+.typstyle-shortcut-clear {
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: #6b7280;
+  cursor: pointer;
+  font-size: 16px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.typstyle-shortcut-clear:hover {
+  background-color: #f3f4f6;
+  color: #374151;
+}
+
+.typstyle-shortcut-help {
+  font-size: 12px;
+  color: #6b7280;
+  margin-top: 4px;
+  font-style: italic;
+}
+
+.typstyle-shortcut-container input:focus {
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1) !important;
+  border-color: #3b82f6 !important;
+}
+
+.typstyle-shortcut-container input[readonly] {
+  background-color: #f9fafb;
+  cursor: pointer;
+}
+
+@keyframes modalShow {
+  from {
+    opacity: 0;
+    transform: scale(0.9) translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+/* Dark Theme */
+[data-theme="dark"] .typstyle-modal {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+[data-theme="dark"] .typstyle-modal-content {
+  background: #1f2937;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6);
+}
+
+[data-theme="dark"] .typstyle-modal-header {
+  border-bottom: 1px solid #374151;
+  background: #111827;
+}
+
+[data-theme="dark"] .typstyle-modal-header h3 {
+  color: #f9fafb;
+}
+
+[data-theme="dark"] .typstyle-close {
+  color: #9ca3af;
+}
+
+[data-theme="dark"] .typstyle-close:hover {
+  background-color: #374151;
+  color: #f3f4f6;
+}
+
+[data-theme="dark"] .typstyle-modal-body {
+  background: #1f2937;
+}
+
+[data-theme="dark"] .typstyle-form-group label {
+  color: #e5e7eb;
+}
+
+[data-theme="dark"] .typstyle-form-group input[type="number"],
+[data-theme="dark"] .typstyle-form-group input[type="text"] {
+  background: #374151;
+  border: 1px solid #4b5563;
+  color: #f9fafb;
+}
+
+[data-theme="dark"] .typstyle-form-group input[type="number"]:focus,
+[data-theme="dark"] .typstyle-form-group input[type="text"]:focus {
+  border-color: #60a5fa;
+  box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.1);
+}
+
+[data-theme="dark"] .typstyle-form-group input[type="checkbox"] {
+  accent-color: #60a5fa;
+}
+
+[data-theme="dark"] .typstyle-modal-footer {
+  border-top: 1px solid #374151;
+  background: #111827;
+}
+
+[data-theme="dark"] .typstyle-btn-primary {
+  background-color: #2563eb;
+}
+
+[data-theme="dark"] .typstyle-btn-primary:hover {
+  background-color: #1d4ed8;
+}
+
+[data-theme="dark"] .typstyle-btn-secondary {
+  background-color: #4b5563;
+}
+
+[data-theme="dark"] .typstyle-btn-secondary:hover {
+  background-color: #374151;
+}
+
+[data-theme="dark"] .typstyle-shortcut-clear {
+  color: #9ca3af;
+}
+
+[data-theme="dark"] .typstyle-shortcut-clear:hover {
+  background-color: #4b5563;
+  color: #f3f4f6;
+}
+
+[data-theme="dark"] .typstyle-shortcut-help {
+  color: #9ca3af;
+}
+
+[data-theme="dark"] .typstyle-shortcut-container input:focus {
+  box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.1) !important;
+  border-color: #60a5fa !important;
+}
+
+[data-theme="dark"] .typstyle-shortcut-container input[readonly] {
+  background-color: #1f2937;
+}
