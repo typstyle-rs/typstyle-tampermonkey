@@ -19,6 +19,18 @@ export default defineConfig({
       },
     }),
   ],
+  build: {
+    minify: "terser",
+    terserOptions: {
+      mangle: {
+        toplevel: true,
+        safari10: true,
+      },
+      format: {
+        comments: false
+      }
+    }
+  },
   resolve: {
     extensions: ['.ts', '.js', '.json']
   }
