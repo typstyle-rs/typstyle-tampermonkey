@@ -21,8 +21,8 @@ A userscript that adds [typstyle](https://github.com/typstyle-rs/typstyle) forma
 2. Copy the built `typstyle-wasm` folder to this project and build
 
    ```bash
-   bun i
-   bun run build
+   pnpm i
+   pnpm build
    ```
 
 ## License

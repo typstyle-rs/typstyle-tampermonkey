@@ -36,6 +36,7 @@ export class EditorManager {
         while (prefix > 0 && this.isHighSurrogate(oldText.charCodeAt(prefix - 1))) {
             prefix--;
         }
+
         let suffix = 0;
         const oldSuffix = oldText.slice(prefix);
         const newSuffix = newText.slice(prefix);
@@ -49,6 +50,7 @@ export class EditorManager {
                 this.isLowSurrogate(newText.charCodeAt(newText.length - suffix)))) {
             suffix--;
         }
+
         const replaceStart = prefix;
         const replaceEnd = oldText.length - suffix;
         const replaceWith = newText.slice(prefix, newText.length - suffix);

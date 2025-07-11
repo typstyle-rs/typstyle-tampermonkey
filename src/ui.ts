@@ -219,9 +219,7 @@ export class ButtonManager {
   }
 
   create(): EditorButton | null {
-    if (this.createdButton) {
-      this.destroy();
-    }
+    this.cleanupExistingButtons();
 
     const helpButton = document.querySelector('button[data-menubar-index="4"]');
     let targetContainer: HTMLElement | null = null;
@@ -254,8 +252,39 @@ export class ButtonManager {
 
     buttonContainer.appendChild(button);
     targetContainer.appendChild(buttonContainer);
+
+    this.createdButton = button;
     return button;
   }
+
+  private cleanupExistingButtons(): void {
+    if (this.createdButton) {
+      this.destroy();
+    }
+
+    const helpButton = document.querySelector('button[data-menubar-index="4"]');
+    let targetContainer: HTMLElement | null = null;
+
+    if (helpButton?.parentElement) {
+      targetContainer = helpButton.parentElement.parentElement;
+    } else {
+      const header = document.querySelector('header');
+      if (header) {
+        targetContainer = header.querySelector('div');
+      }
+    }
+
+    if (targetContainer) {
+      const existingButtons = targetContainer.querySelectorAll('button[data-menubar-index="5"]');
+      existingButtons.forEach(button => {
+        const editorButton = button as EditorButton;
+        if (editorButton._typstyleButton) {
+          button.parentElement?.remove();
+        }
+      });
+    }
+  }
+
   destroy(): void {
     if (this.createdButton) {
       this.createdButton.parentElement?.remove();
