@@ -1,0 +1,81 @@
+name: publish
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Version to publish (e.g., 1.0.0)'
+        required: true
+        type: string
+
+permissions:
+  contents: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout typstyle-tampermonkey
+      uses: actions/checkout@v4
+      with:
+        repository: typstyle-rs/typstyle-tampermonkey
+        path: typstyle-tampermonkey
+
+    - name: Checkout typstyle
+      uses: actions/checkout@v4
+      with:
+        repository: typstyle-rs/typstyle
+        path: typstyle
+
+    - name: Setup Rust
+      uses: dtolnay/rust-toolchain@stable
+      with:
+        targets: wasm32-unknown-unknown
+
+    - name: Install wasm-pack
+      run: curl https://rustwasm.github.io/wasm-pack/installer/init.sh -sSf | sh
+
+    - name: Build typstyle-wasm
+      run: wasm-pack build typstyle/crates/typstyle-wasm --out-dir $(pwd)/typstyle-tampermonkey/typstyle-wasm
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '24'
+
+    - name: Install pnpm
+      uses: pnpm/action-setup@v2
+      with:
+        version: latest
+
+    - name: Bump version
+      working-directory: typstyle-tampermonkey
+      run: |
+        git config --global user.name "github-actions[bot]"
+        git config --global user.email "github-actions[bot]@users.noreply.github.com"
+        pnpm version ${{ github.event.inputs.version }}
+
+    - name: Build
+      working-directory: typstyle-tampermonkey
+      run: | 
+        pnpm i
+        pnpm build
+      
+    - name: Push changes
+      working-directory: typstyle-tampermonkey
+      run: |
+        git push origin main
+        git push origin --tags
+
+    - name: Create Release
+      uses: softprops/action-gh-release@v2
+      with:
+        tag_name: v${{ github.event.inputs.version }}
+        name: Release v${{ github.event.inputs.version }}
+        files: typstyle-tampermonkey/dist/typstyle-tampermonkey.user.js
+        draft: true
+        prerelease: false
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
