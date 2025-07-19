@@ -22,23 +22,6 @@ jobs:
         repository: typstyle-rs/typstyle-tampermonkey
         path: typstyle-tampermonkey
 
-    - name: Checkout typstyle
-      uses: actions/checkout@v4
-      with:
-        repository: typstyle-rs/typstyle
-        path: typstyle
-
-    - name: Setup Rust
-      uses: dtolnay/rust-toolchain@stable
-      with:
-        targets: wasm32-unknown-unknown
-
-    - name: Install wasm-pack
-      run: curl https://rustwasm.github.io/wasm-pack/installer/init.sh -sSf | sh
-
-    - name: Build typstyle-wasm
-      run: wasm-pack build typstyle/crates/typstyle-wasm --out-dir $(pwd)/typstyle-tampermonkey/typstyle-wasm
-
     - name: Setup Node.js
       uses: actions/setup-node@v4
       with:
