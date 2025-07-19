@@ -11,6 +11,9 @@ importers:
       '@typstyle/typstyle-wasm-bundler':
         specifier: ^0.13.16
         version: 0.13.16
+      fast-diff:
+        specifier: ^1.3.0
+        version: 1.3.0
       terser:
         specifier: ^5.43.1
         version: 5.43.1
@@ -451,6 +454,9 @@ packages:
     resolution: {integrity: sha512-GVuzuUwtdsghE3ocJ9Bs8PNoF13HNQ5TXbEi2AhvVb8xU1Iwt9Fos9FEamfoee+u/TOsn7GUWc04lz46n2bbTg==}
     engines: {node: '>=18'}
     hasBin: true
+
+  fast-diff@1.3.0:
+    resolution: {integrity: sha512-VxPP4NqbUjj6MaAOafWeUn2cXWLcCtljklUtZf0Ind4XQ+QPtmA0b18zZy0jIQx+ExRVCR/ZQpBmik5lXshNsw==}
 
   fdir@6.4.6:
     resolution: {integrity: sha512-hiFoqpyZcfNm1yc4u8oWCf9A2c4D3QjCrks3zmoVKVxpQRzmPNar1hUJcBG2RQHvEVGDN+Jm81ZheVLAQMK6+w==}
@@ -927,6 +933,8 @@ snapshots:
       '@esbuild/win32-arm64': 0.25.6
       '@esbuild/win32-ia32': 0.25.6
       '@esbuild/win32-x64': 0.25.6
+
+  fast-diff@1.3.0: {}
 
   fdir@6.4.6(picomatch@4.0.2):
     optionalDependencies:

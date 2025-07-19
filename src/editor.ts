@@ -1,3 +1,5 @@
+import fastDiff from 'fast-diff';
+
 export class EditorManager {
     getContent(): string {
         const contentElement = document.querySelector('.cm-editor .cm-content');
@@ -10,62 +12,37 @@ export class EditorManager {
         //@ts-ignore
         const editorView: any = contentElement.cmView.view;
 
-        const change = this.calculateDiff(oldText, newText);
+        const diffs = fastDiff(oldText, newText);
+        const changes = [];
+        let pos = 0;
 
-        if (change) {
-            editorView.dispatch({
-                changes: change
-            });
-        }
-    }
+        for (const [operation, text] of diffs) {
+            switch (operation) {
+                case fastDiff.EQUAL:
+                    pos += text.length;
+                    break;
 
-    // Borrowed from https://github.com/Myriad-Dreamin/tinymist/blob/b4a53274c2f1c9a6cfcf77b0522704f30d9cb063/crates/tinymist/src/task/format.rs#L62
-    private calculateDiff(oldText: string, newText: string): { from: number, to: number, insert: string } | null {
-        if (oldText === newText) {
-            return null;
-        }
-        let prefix = 0;
-        const minLength = Math.min(oldText.length, newText.length);
+                case fastDiff.DELETE:
+                    changes.push({
+                        from: pos,
+                        to: pos + text.length,
+                    });
+                    pos += text.length;
+                    break;
 
-        while (prefix < minLength && oldText[prefix] === newText[prefix]) {
-            prefix++;
-        }
-        if (prefix === oldText.length && prefix === newText.length) {
-            return null;
-        }
-        while (prefix > 0 && this.isHighSurrogate(oldText.charCodeAt(prefix - 1))) {
-            prefix--;
-        }
-
-        let suffix = 0;
-        const oldSuffix = oldText.slice(prefix);
-        const newSuffix = newText.slice(prefix);
-        const suffixMinLength = Math.min(oldSuffix.length, newSuffix.length);
-        while (suffix < suffixMinLength &&
-            oldSuffix[oldSuffix.length - 1 - suffix] === newSuffix[newSuffix.length - 1 - suffix]) {
-            suffix++;
-        }
-        while (suffix > 0 &&
-            (this.isLowSurrogate(oldText.charCodeAt(oldText.length - suffix)) ||
-                this.isLowSurrogate(newText.charCodeAt(newText.length - suffix)))) {
-            suffix--;
+                case fastDiff.INSERT:
+                    changes.push({
+                        from: pos,
+                        insert: text
+                    });
+                    break;
+            }
         }
 
-        const replaceStart = prefix;
-        const replaceEnd = oldText.length - suffix;
-        const replaceWith = newText.slice(prefix, newText.length - suffix);
-        return {
-            from: replaceStart,
-            to: replaceEnd,
-            insert: replaceWith
-        };
-    }
+        changes.sort((a, b) => b.from - a.from);
 
-    private isHighSurrogate(code: number): boolean {
-        return code >= 0xD800 && code <= 0xDBFF;
-    }
-
-    private isLowSurrogate(code: number): boolean {
-        return code >= 0xDC00 && code <= 0xDFFF;
+        editorView.dispatch({
+            changes: changes
+        });
     }
 }
