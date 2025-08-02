@@ -13,7 +13,7 @@ export default defineConfig({
       userscript: {
         author: 'paran3xus',
         namespace: 'npm/vite-plugin-monkey',
-        match: ['https://typst.app/*'],
+        match: ['https://typst.app/project/*'],
         license: 'MPL 2.0',
         description: 'Format code using typstyle in typst.app'
       },
