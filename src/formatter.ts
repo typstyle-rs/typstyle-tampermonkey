@@ -1,5 +1,5 @@
 import { FormatConfig, DEFAULT_CONFIG } from './types';
-import { format as typstleFormat } from "@typstyle/typstyle-wasm-bundler";
+import { format as typstyleFormat } from "@typstyle/typstyle-wasm-bundler";
 
 export class TypstyleFormatter {
   private config: FormatConfig;
@@ -19,7 +19,7 @@ export class TypstyleFormatter {
     };
 
     try {
-      return typstleFormat(code, config);
+      return typstyleFormat(code, config);
     } catch (error) {
       throw error
     }
