@@ -48,7 +48,7 @@ class TypstylePlugin {
     private checkAndInitialize(): void {
         const currentPath = window.location.pathname;
 
-        if (currentPath.startsWith('/project/')) {
+        if (currentPath.startsWith('/project/') || currentPath.startsWith('/play')) {
             if (!this.isInitialized) {
                 this.initializeInProject();
             }
