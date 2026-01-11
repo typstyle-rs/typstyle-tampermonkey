@@ -9,8 +9,8 @@ importers:
   .:
     dependencies:
       '@typstyle/typstyle-wasm-bundler':
-        specifier: ^0.13.18
-        version: 0.13.18
+        specifier: ^0.14.4
+        version: 0.14.4
       fast-diff:
         specifier: ^1.3.0
         version: 1.3.0
@@ -398,8 +398,8 @@ packages:
   '@types/estree@1.0.8':
     resolution: {integrity: sha512-dWHzHa2WqEXI/O1E9OjrocMTKJl2mSrEolh1Iomrv6U+JuNwaHXsXx9bLu5gG7BUWFIN0skIQJQ/L1rIex4X6w==}
 
-  '@typstyle/typstyle-wasm-bundler@0.13.18':
-    resolution: {integrity: sha512-Kruqyr4FCGOlUZ62iSy5nOLwkETD7DOdiltBe+aHyVGggeH7kt4IPh9djXkzEm7JCwFkC4jX6ZGU7Vf5Gbk8pQ==}
+  '@typstyle/typstyle-wasm-bundler@0.14.4':
+    resolution: {integrity: sha512-/umkAkAgjMQEXN5TdpcpHSHt9DFZkMO6w5j13VsQK9toK/09AneBXSHOnhA+Mv9KOOiS/3h/DPBqLDdkBVPQcw==}
 
   acorn-walk@8.3.4:
     resolution: {integrity: sha512-ueEepnujpqee2o5aIYnvHU6C0A42MNdsIDeqy5BydrkuC5R1ZuUFnm27EeFJGoEHJQgn3uleRvmTXaJgfXbt4g==}
@@ -905,7 +905,7 @@ snapshots:
 
   '@types/estree@1.0.8': {}
 
-  '@typstyle/typstyle-wasm-bundler@0.13.18': {}
+  '@typstyle/typstyle-wasm-bundler@0.14.4': {}
 
   acorn-walk@8.3.4:
     dependencies:
